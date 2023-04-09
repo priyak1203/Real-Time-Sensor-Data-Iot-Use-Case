@@ -24,3 +24,10 @@ formDOM.addEventListener('submit', async (e) => {
     console.log(error);
   }
 });
+
+// socket
+const clientSocket = io();
+
+clientSocket.on('sendData', (data) => {
+  console.log(data);
+});
