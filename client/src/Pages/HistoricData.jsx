@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Table from '../components/Table';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
+  const [sensorData, setSensorData] = useState([]);
 
   const fetchHistoricData = async () => {
     const url = 'http://localhost:5000/historicData';
@@ -16,12 +19,13 @@ const HistoricData = () => {
         },
       });
 
-      const data = await response.json();
-      console.log(data);
+      const { data } = await response.json();
+      setSensorData(data);
     } catch (error) {
       console.log(error);
     }
   };
+
   const handleChange = (e) => {
     setDates({ ...dates, [e.target.name]: e.target.value });
   };
@@ -35,6 +39,7 @@ const HistoricData = () => {
   return (
     <div>
       <h1>Historic Data</h1>
+      <Link to="/">Go to homepage</Link>
       <div>
         <h4>Fetching data between two dates</h4>
         <form onSubmit={handleSubmit}>
@@ -57,6 +62,7 @@ const HistoricData = () => {
           <button type="submit">submit</button>
         </form>
       </div>
+      <Table data={sensorData} />
     </div>
   );
 };

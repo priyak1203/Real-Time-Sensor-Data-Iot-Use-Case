@@ -1,43 +1,14 @@
-import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import HistoricData from './Pages/HistoricData';
-
-// const socket = io('http://localhost:5000/');
-const socket = io();
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HistoricData, HomePage } from './Pages';
 
 function App() {
-  const [sensorData, setSensorData] = useState([]);
-
-  useEffect(() => {
-    socket.on('sendData', (data) => setSensorData(data));
-  }, [socket]);
-
   return (
-    <div>
-      <h1>Real time sensor data </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Temperature</th>
-            <th>Battery-Level</th>
-            <th>Date-Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sensorData.map((item) => {
-            const { _id: id, temperature, batteryLevel, msTime } = item;
-            return (
-              <tr key={id}>
-                <td>{temperature}</td>
-                <td>{batteryLevel}</td>
-                <td>{new Date(msTime).toLocaleString('en-GB')}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <HistoricData />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/historic-data" element={<HistoricData />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
