@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import HistoricData from './Pages/HistoricData';
 
-const socket = io('http://localhost:5000/');
+// const socket = io('http://localhost:5000/');
+const socket = io();
 
 function App() {
   const [sensorData, setSensorData] = useState([]);
@@ -34,6 +36,7 @@ function App() {
           })}
         </tbody>
       </table>
+      <HistoricData />
     </div>
   );
 }

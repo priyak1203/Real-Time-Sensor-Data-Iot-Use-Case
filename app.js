@@ -2,13 +2,14 @@ const http = require('http');
 const { Server } = require('socket.io');
 const express = require('express');
 const app = express();
+const cors = require('cors');
 require('dotenv').config();
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   },
 });
 
@@ -38,6 +39,7 @@ io.on('connection', (socket) => {
 
 // middlewares
 app.use(express.json());
+app.use(cors());
 // app.use(express.static('./public'));
 
 // routes
@@ -46,7 +48,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/allData', getAllData);
-
 app.post('/historicData', getHistoricData);
 
 app.use(errorHandler);
@@ -58,7 +59,7 @@ const start = async () => {
     server.listen(PORT, () =>
       console.log(`Server is listening on port: ${PORT}`)
     );
-    dataGenerator();
+    // dataGenerator();
   } catch (error) {
     console.log(error);
   }
