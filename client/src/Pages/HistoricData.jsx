@@ -37,10 +37,15 @@ const HistoricData = () => {
   };
 
   return (
-    <div>
-      <h1>Historic Data</h1>
-      <Link to="/">Go to homepage</Link>
-      <div>
+    <section className="section">
+      <header>
+        <h1 className="title">historic data</h1>
+        <Link to="/" className="btn">
+          back home
+        </Link>
+      </header>
+
+      <div className="form">
         <h4>Fetching data between two dates</h4>
         <form onSubmit={handleSubmit}>
           <label htmlFor="startDate">start date</label>
@@ -63,7 +68,7 @@ const HistoricData = () => {
         </form>
       </div>
       <Table data={sensorData} />
-    </div>
+    </section>
   );
 };
 

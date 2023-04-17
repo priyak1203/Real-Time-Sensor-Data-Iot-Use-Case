@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import Table from '../components/Table';
 
 const socket = io('http://localhost:5000/');
+// const socket = io();
 
 const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);
@@ -13,11 +14,16 @@ const HomePage = () => {
   }, [socket]);
 
   return (
-    <div>
-      <h1>Real time sensor data </h1>
-      <Link to="/historic-data">get historic data</Link>
+    <main className="section">
+      <header>
+        <h1 className="title">Real time sensor data </h1>
+        <Link to="/historic-data" className="btn">
+          get historic data
+        </Link>
+      </header>
+
       <Table data={sensorData} />
-    </div>
+    </main>
   );
 };
 

@@ -2,7 +2,7 @@ import { headers } from '../utils/data';
 
 const Table = ({ data }) => {
   return (
-    <table>
+    <table className="table">
       <thead>
         <tr>
           {headers?.map((item, index) => {

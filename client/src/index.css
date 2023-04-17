@@ -1,69 +1,99 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+:root {
+  --clr-primary: #4f81bd;
+  --clr-primary-1: #b8cce4;
+  --clr-primary-2: #dbe5f1;
+  --clr-grey-1: #f0f4f8;
+  --clr-secondary: #c0504d;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --backgroundColor: #dfe6e9;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--backgroundColor);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  text-transform: capitalize;
+  color: var(--clr-grey-1);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+a {
+  text-decoration: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+.section {
+  width: 95vw;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-top: 0;
+  height: 100vh;
+  padding-bottom: 0;
+}
+
+.section > header {
+  background-color: var(--clr-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem 4rem;
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 1.7rem;
+}
+
+.btn {
+  text-transform: capitalize;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: var(--clr-grey-1);
+  color: var(--clr-primary);
+  font-size: 1.2rem;
+}
+
+/* =========== table styles =========== */
+
+.table {
+  width: 600px;
+  text-align: center;
+}
+
+table {
+  border: 2px solid var(--clr-primary);
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid var(--clr-grey-1);
+  border-collapse: collapse;
+}
+
+th {
+  font-size: 1.2rem;
+  padding: 8px;
+  text-transform: capitalize;
+  background-color: var(--clr-primary);
+  color: var(--clr-grey-1);
+}
+
+td {
+  font-size: 1rem;
+  padding: 3px;
+}
+
+tbody > tr {
+  background-color: var(--clr-primary-1);
+}
+
+tbody > tr:nth-child(even) {
+  background-color: var(--clr-primary-2);
+}
