@@ -97,3 +97,22 @@ tbody > tr {
 tbody > tr:nth-child(even) {
   background-color: var(--clr-primary-2);
 }
+
+/* .data-section {
+  display: flex;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+}
+
+.data-section > table {
+  width: 50%;
+}
+
+.data-section > div {
+  width: 50%;
+} */
+
+.data-section {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
