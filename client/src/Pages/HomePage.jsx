@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import Table from '../components/Table';
 import ExampleChart from '../components/ExampleChart';
-import MultipleSeriesChart from '../components/MultipleSeriesChart';
+import MultiSeriesChart from '../components/MultiSeriesChart';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();
@@ -15,28 +15,17 @@ const HomePage = () => {
     socket.on('sendData', (data) => setSensorData(data));
   }, [socket]);
 
-  // tempData
-  const tempData = sensorData.map((item) => {
-    const { temperature, msTime } = item;
-    const label = new Date(msTime).toLocaleString('en-GB');
-    const value = temperature;
-    return { value, label };
-  });
-
-  // multipledata
-  const categories = sensorData.map((item) => {
-    const { msTime } = item;
+  // chart data
+  const categories = sensorData.map(({ msTime }) => {
     const label = new Date(msTime).toLocaleString('en-GB');
     return { label };
   });
 
-  const temperatureData = sensorData.map((item) => {
-    const { temperature } = item;
+  const temperatureData = sensorData.map(({ temperature }) => {
     return { value: temperature };
   });
 
-  const batteryData = sensorData.map((item) => {
-    const { batteryLevel } = item;
+  const batteryData = sensorData.map(({ batteryLevel }) => {
     return { value: batteryLevel };
   });
 
@@ -51,7 +40,7 @@ const HomePage = () => {
       <div className="data-section">
         <Table data={sensorData} />
         {/* <ExampleChart data={tempData} /> */}
-        <MultipleSeriesChart
+        <MultiSeriesChart
           category={categories}
           temperature={temperatureData}
           battery={batteryData}
