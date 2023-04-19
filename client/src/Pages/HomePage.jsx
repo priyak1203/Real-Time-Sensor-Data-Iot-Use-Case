@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import Table from '../components/Table';
 import ExampleChart from '../components/ExampleChart';
+import MultipleSeriesChart from '../components/MultipleSeriesChart';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();
@@ -22,7 +23,22 @@ const HomePage = () => {
     return { value, label };
   });
 
-  console.log(tempData);
+  // multipledata
+  const categories = sensorData.map((item) => {
+    const { msTime } = item;
+    const label = new Date(msTime).toLocaleString('en-GB');
+    return { label };
+  });
+
+  const temperatureData = sensorData.map((item) => {
+    const { temperature } = item;
+    return { value: temperature };
+  });
+
+  const batteryData = sensorData.map((item) => {
+    const { batteryLevel } = item;
+    return { value: batteryLevel };
+  });
 
   return (
     <main className="section">
@@ -34,7 +50,12 @@ const HomePage = () => {
       </header>
       <div className="data-section">
         <Table data={sensorData} />
-        <ExampleChart data={tempData} />
+        {/* <ExampleChart data={tempData} /> */}
+        <MultipleSeriesChart
+          category={categories}
+          temperature={temperatureData}
+          battery={batteryData}
+        />
       </div>
     </main>
   );
