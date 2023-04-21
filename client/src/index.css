@@ -3,6 +3,7 @@
   --clr-primary-1: #b8cce4;
   --clr-primary-2: #dbe5f1;
   --clr-grey-1: #f0f4f8;
+  --clr-grey-2: #829ab1;
   --clr-secondary: #c0504d;
 
   --backgroundColor: #dfe6e9;
@@ -115,4 +116,23 @@ tbody > tr:nth-child(even) {
 .data-section {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+/* loading */
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 8rem;
+  height: 8rem;
+  border: 5px solid var(--clr-grey-1);
+  border-radius: 50%;
+  border-top-color: var(--clr-primary);
+  animation: spinner 2s linear infinite;
+  display: grid;
+  margin: 0 auto;
+  margin-top: 12rem;
 }

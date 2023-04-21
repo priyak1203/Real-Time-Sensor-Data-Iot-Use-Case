@@ -4,15 +4,22 @@ import io from 'socket.io-client';
 import Table from '../components/Table';
 import ExampleChart from '../components/ExampleChart';
 import MultiSeriesChart from '../components/MultiSeriesChart';
+import Loading from '../components/Loading';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();
 
 const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    socket.on('sendData', (data) => setSensorData(data));
+    socket.on('sendData', (data) => {
+      setSensorData(data);
+      if (isLoading) {
+        setIsLoading(false);
+      }
+    });
   }, [socket]);
 
   // chart data
@@ -37,15 +44,19 @@ const HomePage = () => {
           get historic data
         </Link>
       </header>
-      <div className="data-section">
-        <Table data={sensorData} />
-        {/* <ExampleChart data={tempData} /> */}
-        <MultiSeriesChart
-          category={categories}
-          temperature={temperatureData}
-          battery={batteryData}
-        />
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="data-section">
+          <Table data={sensorData} />
+          {/* <ExampleChart data={tempData} /> */}
+          <MultiSeriesChart
+            category={categories}
+            temperature={temperatureData}
+            battery={batteryData}
+          />
+        </div>
+      )}
     </main>
   );
 };
