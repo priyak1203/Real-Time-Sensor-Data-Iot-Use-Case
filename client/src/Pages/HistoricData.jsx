@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Table from '../components/Table';
+import Loading from '../components/Loading';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
   const [sensorData, setSensorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchHistoricData = async () => {
+    setIsLoading(true);
     const url = 'http://localhost:5000/historicData';
 
     const historicDates = { start: dates.startDate, end: dates.endDate };
@@ -24,6 +27,7 @@ const HistoricData = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const handleChange = (e) => {
@@ -32,7 +36,7 @@ const HistoricData = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setDates({ startDate: '', endDate: '' });
+    // setDates({ startDate: '', endDate: '' });
     fetchHistoricData();
   };
 
@@ -46,8 +50,7 @@ const HistoricData = () => {
       </header>
 
       <div className="form">
-        <h4>Fetching data between two dates</h4>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-control">
           <label htmlFor="startDate">start date</label>
           <input
             type="date"
@@ -67,7 +70,11 @@ const HistoricData = () => {
           <button type="submit">submit</button>
         </form>
       </div>
-      <Table data={sensorData} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        sensorData?.length > 0 && <Table data={sensorData} />
+      )}
     </section>
   );
 };

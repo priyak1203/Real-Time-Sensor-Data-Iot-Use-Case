@@ -118,6 +118,43 @@ tbody > tr:nth-child(even) {
   grid-template-columns: 50% 50%;
 }
 
+/* form styles */
+.form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form label {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 10px;
+  margin-right: 2px;
+  color: var(--clr-primary);
+}
+
+.form input {
+  border: 1px solid var(--clr-primary-1);
+  margin-right: 15px;
+  margin-left: 0;
+  color: var(--clr-primary);
+  font-size: 1.1rem;
+}
+
+.form button {
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: var(--clr-primary);
+  color: var(--clr-grey-1);
+  border: transparent;
+  padding: 4px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin: 0;
+  margin-left: 10px;
+}
+
 /* loading */
 @keyframes spinner {
   to {
