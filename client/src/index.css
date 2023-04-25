@@ -127,7 +127,7 @@ tbody > tr:nth-child(even) {
 
 .form label {
   text-transform: capitalize;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin: 0 10px;
   margin-right: 2px;
@@ -139,7 +139,8 @@ tbody > tr:nth-child(even) {
   margin-right: 15px;
   margin-left: 0;
   color: var(--clr-primary);
-  font-size: 1.1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .form button {
@@ -172,4 +173,13 @@ tbody > tr:nth-child(even) {
   display: grid;
   margin: 0 auto;
   margin-top: 12rem;
+}
+
+.btn-container {
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+  align-items: center;
 }

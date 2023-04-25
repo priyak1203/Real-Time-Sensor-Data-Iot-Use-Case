@@ -2,11 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Table from '../components/Table';
 import Loading from '../components/Loading';
+import { paginate } from '../utils/paginate';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
   const [sensorData, setSensorData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [pageData, setPageData] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
+  const [page, setPage] = useState(15);
+  const [noOfPages, setNoOfPages] = useState(null);
 
   const fetchHistoricData = async () => {
     setIsLoading(true);
@@ -22,8 +27,13 @@ const HistoricData = () => {
         },
       });
 
-      const { data } = await response.json();
-      setSensorData(data);
+      const { data: sensorData } = await response.json();
+      setSensorData(sensorData);
+      const { data, pages } = paginate(sensorData);
+
+      setPageData(data);
+      setCurrentData(data[page]);
+      setNoOfPages(pages);
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +83,18 @@ const HistoricData = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        sensorData?.length > 0 && <Table data={sensorData} />
+        sensorData?.length > 0 && (
+          <>
+            <div className="btn-container">
+              <button>prev</button>
+              <p>
+                {page} of {noOfPages}
+              </p>
+              <button>next</button>
+            </div>
+            <Table data={currentData} />
+          </>
+        )
       )}
     </section>
   );
