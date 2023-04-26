@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Table from '../components/Table';
 import Loading from '../components/Loading';
 import { paginate } from '../utils/paginate';
+import TableSection from '../components/TableSection';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
   const [sensorData, setSensorData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pageData, setPageData] = useState([]);
-  const [currentData, setCurrentData] = useState([]);
-  const [page, setPage] = useState(0);
   const [noOfPages, setNoOfPages] = useState(null);
 
   const fetchHistoricData = async () => {
@@ -28,11 +26,10 @@ const HistoricData = () => {
       });
 
       const { data: sensorData } = await response.json();
-      setSensorData(sensorData); // original result
-      const { data, pages } = paginate(sensorData);
+      setSensorData(sensorData); // original data
 
-      setPageData(data); // paged result
-      setCurrentData(data[page]);
+      const { data, pages } = paginate(sensorData);
+      setPageData(data); // paged data
       setNoOfPages(pages);
     } catch (error) {
       console.log(error);
@@ -49,30 +46,6 @@ const HistoricData = () => {
     // setDates({ startDate: '', endDate: '' });
     fetchHistoricData();
   };
-
-  const prevPage = () => {
-    setPage((oldPage) => {
-      let prevPage = oldPage - 1;
-      if (prevPage < 0) {
-        prevPage = pageData.length - 1;
-      }
-      return prevPage;
-    });
-  };
-
-  const nextPage = () => {
-    setPage((oldPage) => {
-      let nextPage = oldPage + 1;
-      if (nextPage > pageData.length - 1) {
-        nextPage = 0;
-      }
-      return nextPage;
-    });
-  };
-
-  useEffect(() => {
-    setCurrentData(pageData[page]);
-  }, [page]);
 
   return (
     <section className="section">
@@ -108,16 +81,7 @@ const HistoricData = () => {
         <Loading />
       ) : (
         sensorData?.length > 0 && (
-          <>
-            <div className="btn-container">
-              <button onClick={prevPage}>prev</button>
-              <p>
-                {page + 1} of {noOfPages}
-              </p>
-              <button onClick={nextPage}>next</button>
-            </div>
-            <Table data={currentData} />
-          </>
+          <TableSection pageData={pageData} noOfPages={noOfPages} />
         )
       )}
     </section>
