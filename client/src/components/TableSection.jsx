@@ -30,16 +30,18 @@ const TableSection = ({ pageData, noOfPages }) => {
   }, [page]);
 
   return (
-    <>
+    <div>
       <div className="btn-container">
-        <button onClick={prevPage}>prev</button>
+        <button onClick={prevPage} className="pg-btn">
+          prev
+        </button>
         <p>
           {page + 1} of {noOfPages}
         </p>
         <button onClick={nextPage}>next</button>
       </div>
       <Table data={currentData} />
-    </>
+    </div>
   );
 };
 

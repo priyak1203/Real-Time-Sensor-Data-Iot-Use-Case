@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { paginate } from '../utils/paginate';
 import TableSection from '../components/TableSection';
+import ExampleBarChart from '../components/ExampleBarChart';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -47,6 +48,8 @@ const HistoricData = () => {
     fetchHistoricData();
   };
 
+  // chart data
+
   return (
     <section className="section">
       <header>
@@ -81,7 +84,10 @@ const HistoricData = () => {
         <Loading />
       ) : (
         sensorData?.length > 0 && (
-          <TableSection pageData={pageData} noOfPages={noOfPages} />
+          <div className="data-section">
+            <TableSection pageData={pageData} noOfPages={noOfPages} />
+            <ExampleBarChart />
+          </div>
         )
       )}
     </section>

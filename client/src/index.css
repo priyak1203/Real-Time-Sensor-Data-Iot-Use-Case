@@ -7,6 +7,10 @@
   --clr-secondary: #c0504d;
 
   --backgroundColor: #dfe6e9;
+  --fixed-width: 600px;
+
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
 }
 
 * {
@@ -63,7 +67,7 @@ a {
 /* =========== table styles =========== */
 
 .table {
-  width: 600px;
+  width: var(--fixed-width);
   text-align: center;
 }
 
@@ -154,6 +158,7 @@ tbody > tr:nth-child(even) {
   border-radius: 4px;
   margin: 0;
   margin-left: 10px;
+  letter-spacing: var(--spacing);
 }
 
 /* loading */
@@ -176,10 +181,29 @@ tbody > tr:nth-child(even) {
 }
 
 .btn-container {
-  background-color: pink;
+  width: var(--fixed-width);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
-
-  margin-bottom: 1rem;
   align-items: center;
+}
+
+.btn-container p {
+  font-weight: bold;
+  color: var(--clr-primary);
+  letter-spacing: var(--spacing);
+}
+
+.btn-container button {
+  margin: 0 1rem;
+  padding: 0.25rem 0.5rem;
+  text-transform: capitalize;
+  border-color: transparent;
+
+  background: var(--clr-primary);
+  color: var(--clr-grey-1);
+  cursor: pointer;
+  border-radius: var(--radius);
+  letter-spacing: var(--spacing);
 }
