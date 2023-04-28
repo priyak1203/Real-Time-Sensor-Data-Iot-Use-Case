@@ -207,3 +207,8 @@ tbody > tr:nth-child(even) {
   border-radius: var(--radius);
   letter-spacing: var(--spacing);
 }
+
+.chart-section {
+  /* margin-top: 3.6rem; */
+  margin-top: 58px;
+}

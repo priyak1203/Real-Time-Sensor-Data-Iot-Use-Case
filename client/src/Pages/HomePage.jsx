@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import Table from '../components/Table';
-import ExampleChart from '../components/ExampleChart';
+import ExampleChart from '../components/Charts/ExampleChart';
 import MultiSeriesChart from '../components/MultiSeriesChart';
 import Loading from '../components/Loading';
 

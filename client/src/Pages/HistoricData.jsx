@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { paginate } from '../utils/paginate';
 import TableSection from '../components/TableSection';
-import ExampleBarChart from '../components/ExampleBarChart';
+import ExampleBarChart from '../components/Charts/ExampleBarChart';
+import MultiSeriesBarChart from '../components/MultiSeriesBarChart';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -86,7 +87,10 @@ const HistoricData = () => {
         sensorData?.length > 0 && (
           <div className="data-section">
             <TableSection pageData={pageData} noOfPages={noOfPages} />
-            <ExampleBarChart />
+            <div className="chart-section">
+              {/* <ExampleBarChart /> */}
+              <MultiSeriesBarChart />
+            </div>
           </div>
         )
       )}
