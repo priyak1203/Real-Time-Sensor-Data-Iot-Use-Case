@@ -5,7 +5,7 @@ import ReactFusioncharts from 'react-fusioncharts';
 // Resolves charts dependancy
 charts(FusionCharts);
 
-const MultiSeriesChart = ({ category, temperature, battery }) => {
+const MultiSeriesLineChart = ({ category, temperature, battery }) => {
   const dataSource = {
     chart: {
       caption: 'Real Time Sensor Data for Every 10ms',
@@ -62,4 +62,4 @@ const MultiSeriesChart = ({ category, temperature, battery }) => {
   );
 };
 
-export default MultiSeriesChart;
+export default MultiSeriesLineChart;

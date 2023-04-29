@@ -16,7 +16,7 @@ const getHistoricData = asyncWrapper(async (req, res) => {
 
   if (start > end) {
     throw new BadRequestError(
-      'Start date should be a date before the End date'
+      'Start date should be a date prior to the End date'
     );
   }
 

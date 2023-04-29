@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../components/Loading';
-import { paginate } from '../utils/paginate';
-import TableSection from '../components/TableSection';
-import ExampleBarChart from '../components/Charts/ExampleBarChart';
-import MultiSeriesBarChart from '../components/MultiSeriesBarChart';
-import { calculateAvgData } from '../utils/chartData';
 import axios from 'axios';
+import Loading from '../components/Loading';
+import TableSection from '../components/TableSection';
+import MultiSeriesBarChart from '../components/Charts/MultiSeriesBarChart';
+import { paginate } from '../utils/paginate';
+import { calculateAvgData } from '../utils/chartData';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -88,25 +87,21 @@ const HistoricData = () => {
         </form>
       </div>
 
-      {isLoading ? (
-        <Loading />
-      ) : error.status ? (
-        <h2>{error.msg}</h2>
-      ) : (
-        !error.status &&
-        sensorData?.length > 0 && (
-          <div className="data-section">
-            <TableSection pageData={pageData} noOfPages={noOfPages} />
-            <div className="chart-section">
-              {/* <ExampleBarChart /> */}
-              <MultiSeriesBarChart
-                category={categories}
-                temperature={temperature}
-                battery={batteryLevel}
-              />
-            </div>
+      {isLoading && <Loading />}
+
+      {error.status && <h2 className="error-msg">{error.msg}</h2>}
+
+      {!isLoading && !error.status && sensorData?.length > 0 && (
+        <div className="data-section">
+          <TableSection pageData={pageData} noOfPages={noOfPages} />
+          <div className="chart-section">
+            <MultiSeriesBarChart
+              category={categories}
+              temperature={temperature}
+              battery={batteryLevel}
+            />
           </div>
-        )
+        </div>
       )}
     </section>
   );

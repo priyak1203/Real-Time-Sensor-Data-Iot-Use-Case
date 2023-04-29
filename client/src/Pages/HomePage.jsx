@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import Table from '../components/Table';
-import ExampleChart from '../components/Charts/ExampleChart';
-import MultiSeriesChart from '../components/MultiSeriesChart';
 import Loading from '../components/Loading';
+import MultiSeriesLineChart from '../components/Charts/MultiSeriesLineChart';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();
@@ -50,7 +49,8 @@ const HomePage = () => {
         <div className="data-section">
           <Table data={sensorData} />
           {/* <ExampleChart data={tempData} /> */}
-          <MultiSeriesChart
+
+          <MultiSeriesLineChart
             category={categories}
             temperature={temperatureData}
             battery={batteryData}

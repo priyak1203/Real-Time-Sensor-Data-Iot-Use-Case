@@ -212,3 +212,11 @@ tbody > tr:nth-child(even) {
   /* margin-top: 3.6rem; */
   margin-top: 58px;
 }
+
+.error-msg {
+  margin: 2rem;
+  color: #900404;
+  text-transform: capitalize;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+}
