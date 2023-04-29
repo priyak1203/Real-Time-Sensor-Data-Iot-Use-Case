@@ -6,6 +6,7 @@ import TableSection from '../components/TableSection';
 import ExampleBarChart from '../components/Charts/ExampleBarChart';
 import MultiSeriesBarChart from '../components/MultiSeriesBarChart';
 import { calculateAvgData } from '../utils/chartData';
+import axios from 'axios';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -14,28 +15,30 @@ const HistoricData = () => {
   const [pageData, setPageData] = useState([]);
   const [noOfPages, setNoOfPages] = useState(null);
 
+  const [error, setError] = useState({ status: false, msg: '' });
+
+  const handleError = (status = false, msg = '') => {
+    setError({ status, msg });
+  };
+
   const fetchHistoricData = async () => {
     setIsLoading(true);
+    handleError();
     const url = 'http://localhost:5000/historicData';
 
     const historicDates = { start: dates.startDate, end: dates.endDate };
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(historicDates),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      });
+      const {
+        data: { data: sensorData },
+      } = await axios.post(url, historicDates);
 
-      const { data: sensorData } = await response.json();
       setSensorData(sensorData); // original data
 
       const { data, pages } = paginate(sensorData);
       setPageData(data); // paged data
       setNoOfPages(pages);
     } catch (error) {
-      console.log(error);
+      handleError(true, error.response.data.msg);
     }
     setIsLoading(false);
   };
@@ -84,9 +87,13 @@ const HistoricData = () => {
           <button type="submit">submit</button>
         </form>
       </div>
+
       {isLoading ? (
         <Loading />
+      ) : error.status ? (
+        <h2>{error.msg}</h2>
       ) : (
+        !error.status &&
         sensorData?.length > 0 && (
           <div className="data-section">
             <TableSection pageData={pageData} noOfPages={noOfPages} />
