@@ -5,7 +5,7 @@ import ReactFusioncharts from 'react-fusioncharts';
 // Resolves charts dependancy
 charts(FusionCharts);
 
-function MultiSeriesBarChart() {
+function MultiSeriesBarChart({ category, temperature, battery }) {
   const dataSource = {
     chart: {
       caption: 'Recent Average Data',
@@ -46,36 +46,18 @@ function MultiSeriesBarChart() {
     },
     categories: [
       {
-        category: [
-          { label: '03-04-2023' },
-          { label: '04-04-2023' },
-          { label: '05-04-2023' },
-          { label: '06-04-2023' },
-          { label: '07-04-2023' },
-        ],
+        category: category,
       },
     ],
     dataset: [
       {
         seriesname: 'Average Temperature',
-        data: [
-          { value: 30.533 },
-          { value: 29.927 },
-          { value: 29.111 },
-          { value: 33.9 },
-          { value: 28.7 },
-        ],
+        data: temperature,
         color: '#289d8c',
       },
       {
         seriesname: 'Average Battery Level',
-        data: [
-          { value: 90.067 },
-          { value: 90.309 },
-          { value: 91 },
-          { value: 90.5 },
-          { value: 91 },
-        ],
+        data: battery,
         color: '#c0504d',
       },
     ],
