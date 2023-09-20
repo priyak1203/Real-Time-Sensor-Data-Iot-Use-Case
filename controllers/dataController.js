@@ -1,12 +1,15 @@
 const asyncWrapper = require('../middlewares/async');
 const SensorData = require('../models/SensorData');
 const { BadRequestError, NotFoundError } = require('../errors');
+const { startOfDay, endOfDay } = require('date-fns');
 
+// get all data
 const getAllData = async (req, res) => {
   const results = await SensorData.find({});
   res.status(200).json({ count: results.length, data: results });
 };
 
+// get data between two dates
 const getHistoricData = asyncWrapper(async (req, res) => {
   const { start, end } = req.body;
 
@@ -20,14 +23,8 @@ const getHistoricData = asyncWrapper(async (req, res) => {
     );
   }
 
-  if (start === end) {
-    throw new BadRequestError(
-      'Start and End dates cannot be same. End date should be atleast a day more than Start Date'
-    );
-  }
-
   const dataSet = await SensorData.find({
-    date: { $gte: new Date(start), $lt: new Date(end) },
+    date: { $gte: startOfDay(new Date(start)), $lt: endOfDay(new Date(end)) },
   });
 
   if (dataSet.length < 1) {
