@@ -20,11 +20,14 @@ const getHistoricData = asyncWrapper(async (req, res) => {
     );
   }
 
-  const startDate = start.split('-').reverse().join('-');
-  const endDate = end.split('-').reverse().join('-');
+  if (start === end) {
+    throw new BadRequestError(
+      'Start and End dates cannot be same. End date should be atleast a day more than Start Date'
+    );
+  }
 
   const dataSet = await SensorData.find({
-    timeStamp: { $gte: startDate, $lte: endDate },
+    date: { $gte: new Date(start), $lt: new Date(end) },
   });
 
   if (dataSet.length < 1) {
