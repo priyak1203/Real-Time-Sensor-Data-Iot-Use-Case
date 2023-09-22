@@ -9,10 +9,16 @@
 
   --backgroundColor: #dfe6e9;
 
+  /* set 1 */
   --clr-primary: #14b8a6;
   --clr-primary-1: #abccc9;
   --clr-primary-2: #d7f4f2;
   --backgroundColor: #f1f5f9;
+
+  /* set 2 */
+  --clr-primary: #4d7c0f;
+  --clr-primary-1: #bed0a9;
+  --clr-primary-2: #eff7e3;
 
   --fixed-width: 600px;
 
