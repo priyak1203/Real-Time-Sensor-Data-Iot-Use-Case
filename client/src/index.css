@@ -2,11 +2,18 @@
   --clr-primary: #4f81bd;
   --clr-primary-1: #b8cce4;
   --clr-primary-2: #dbe5f1;
+
   --clr-grey-1: #f0f4f8;
   --clr-grey-2: #829ab1;
   --clr-secondary: #c0504d;
 
   --backgroundColor: #dfe6e9;
+
+  --clr-primary: #14b8a6;
+  --clr-primary-1: #abccc9;
+  --clr-primary-2: #d7f4f2;
+  --backgroundColor: #f1f5f9;
+
   --fixed-width: 600px;
 
   --spacing: 0.1rem;
