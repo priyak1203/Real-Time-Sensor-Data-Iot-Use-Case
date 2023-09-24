@@ -67,7 +67,7 @@ function MultiSeriesBarChart({ category, temperature, battery }) {
     <ReactFusioncharts
       type="mscolumn3d"
       width="100%"
-      height="425"
+      height="430"
       dataFormat="JSON"
       dataSource={dataSource}
     />

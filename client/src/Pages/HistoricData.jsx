@@ -67,22 +67,27 @@ const HistoricData = () => {
 
       <div className="form">
         <form onSubmit={handleSubmit} className="form-control">
-          <label htmlFor="startDate">start date</label>
-          <input
-            type="date"
-            name="startDate"
-            id="startDate"
-            onChange={handleChange}
-            value={dates.startDate}
-          />
-          <label htmlFor="end-date">end date</label>
-          <input
-            type="date"
-            name="endDate"
-            id="endDate"
-            onChange={handleChange}
-            value={dates.endDate}
-          />
+          <div>
+            <label htmlFor="startDate">start date</label>
+            <input
+              type="date"
+              name="startDate"
+              id="startDate"
+              onChange={handleChange}
+              value={dates.startDate}
+            />
+          </div>
+          <div>
+            <label htmlFor="end-date">end date</label>
+            <input
+              type="date"
+              name="endDate"
+              id="endDate"
+              onChange={handleChange}
+              value={dates.endDate}
+            />
+          </div>
+
           <button type="submit">submit</button>
         </form>
       </div>
@@ -94,7 +99,7 @@ const HistoricData = () => {
       {!isLoading && !error.status && sensorData?.length > 0 && (
         <div className="data-section">
           <TableSection pageData={pageData} noOfPages={noOfPages} />
-          <div className="chart-section">
+          <div className="chart chart-section">
             <MultiSeriesBarChart
               category={categories}
               temperature={temperature}

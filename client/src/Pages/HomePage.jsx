@@ -50,7 +50,6 @@ const HomePage = () => {
           <Table data={sensorData} />
           <div className="chart">
             <MultiSeriesLineChart
-              className="chart"
               category={categories}
               temperature={temperatureData}
               battery={batteryData}

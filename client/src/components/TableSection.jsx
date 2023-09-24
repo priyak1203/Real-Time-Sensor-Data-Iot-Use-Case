@@ -31,7 +31,9 @@ const TableSection = ({ pageData, noOfPages }) => {
 
   return (
     <div>
-      <div className="btn-container">
+      <div
+        className={noOfPages > 1 ? 'btn-container show-btn' : 'btn-container'}
+      >
         <button onClick={prevPage} className="pg-btn">
           prev
         </button>
