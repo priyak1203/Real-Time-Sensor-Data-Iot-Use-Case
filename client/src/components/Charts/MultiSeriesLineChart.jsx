@@ -8,7 +8,7 @@ charts(FusionCharts);
 const MultiSeriesLineChart = ({ category, temperature, battery }) => {
   const dataSource = {
     chart: {
-      caption: 'Real Time Sensor Data for Every 10ms',
+      caption: 'Real Time Sensor Data for Every 10s',
       yaxisname: 'Temperature - Battery Level',
       numdivlines: '3',
       showvalues: '0',
@@ -31,6 +31,8 @@ const MultiSeriesLineChart = ({ category, temperature, battery }) => {
       legendBgAlpha: '30',
       legendPosition: 'bottom-right',
       legendItemFontSize: '12',
+      showBorder: '1',
+      borderThickness: '2',
     },
     categories: [
       {
@@ -55,7 +57,7 @@ const MultiSeriesLineChart = ({ category, temperature, battery }) => {
     <ReactFusioncharts
       type="msspline"
       width="100%"
-      height="100%"
+      height="550"
       dataFormat="JSON"
       dataSource={dataSource}
     />

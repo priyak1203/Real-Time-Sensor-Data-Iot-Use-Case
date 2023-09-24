@@ -48,13 +48,14 @@ const HomePage = () => {
       ) : (
         <div className="data-section">
           <Table data={sensorData} />
-          {/* <ExampleChart data={tempData} /> */}
-
-          <MultiSeriesLineChart
-            category={categories}
-            temperature={temperatureData}
-            battery={batteryData}
-          />
+          <div className="chart">
+            <MultiSeriesLineChart
+              className="chart"
+              category={categories}
+              temperature={temperatureData}
+              battery={batteryData}
+            />
+          </div>
         </div>
       )}
     </main>

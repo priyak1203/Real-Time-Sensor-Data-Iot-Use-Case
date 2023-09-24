@@ -9,16 +9,12 @@
 
   --backgroundColor: #dfe6e9;
 
-  /* set 1 */
-  --clr-primary: #14b8a6;
-  --clr-primary-1: #abccc9;
-  --clr-primary-2: #d7f4f2;
-  --backgroundColor: #f1f5f9;
-
   /* set 2 */
   --clr-primary: #4d7c0f;
   --clr-primary-1: #bed0a9;
   --clr-primary-2: #eff7e3;
+
+  --backgroundColor: #f1f5f9;
 
   --fixed-width: 600px;
 
@@ -50,7 +46,6 @@ a {
   margin: 0 auto;
   padding: 1rem;
   padding-top: 0;
-  height: 100vh;
   padding-bottom: 0;
 }
 
@@ -60,27 +55,25 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
   border-radius: 4px;
 }
 
 .title {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 .btn {
   text-transform: capitalize;
-  padding: 4px 8px;
+  padding: 2px 4px;
   border-radius: 4px;
   background-color: var(--clr-grey-1);
   color: var(--clr-primary);
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* =========== table styles =========== */
-
 .table {
-  width: var(--fixed-width);
   text-align: center;
 }
 
@@ -96,16 +89,16 @@ th {
 }
 
 th {
-  font-size: 1.2rem;
-  padding: 8px;
+  font-size: 1rem;
+  padding: 4px;
   text-transform: capitalize;
   background-color: var(--clr-primary);
   color: var(--clr-grey-1);
 }
 
 td {
-  font-size: 1rem;
-  padding: 3px;
+  font-size: 0.8rem;
+  padding: 1.5px;
 }
 
 tbody > tr {
@@ -116,23 +109,53 @@ tbody > tr:nth-child(even) {
   background-color: var(--clr-primary-2);
 }
 
-/* .data-section {
-  display: flex;
-  grid-template-rows: 1fr 1fr;
-  gap: 1rem;
-}
-
-.data-section > table {
-  width: 50%;
-}
-
-.data-section > div {
-  width: 50%;
-} */
-
 .data-section {
   display: grid;
-  grid-template-columns: 50% 50%;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* responsive chart styles  */
+.chart div {
+  width: 100% !important;
+  border: transparent !important;
+}
+
+.chart .fusioncharts-container {
+  width: 100% !important;
+}
+
+.chart svg {
+  width: 100% !important;
+}
+
+/* responsive styles */
+@media screen and (min-width: 640px) {
+  .section > header {
+    padding: 1rem 4rem;
+  }
+  .title {
+    font-size: 1.7rem;
+  }
+  .btn {
+    padding: 4px 8px;
+    font-size: 1.2rem;
+  }
+  th {
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+  td {
+    font-size: 1rem;
+    padding: 3px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .data-section {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 1rem;
+  }
 }
 
 /* form styles */
