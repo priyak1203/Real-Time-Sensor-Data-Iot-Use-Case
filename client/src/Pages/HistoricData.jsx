@@ -6,6 +6,7 @@ import TableSection from '../components/TableSection';
 import MultiSeriesBarChart from '../components/Charts/MultiSeriesBarChart';
 import { paginate } from '../utils/paginate';
 import { calculateAvgData } from '../utils/chartData';
+import FormRow from '../components/FormRow';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -67,27 +68,20 @@ const HistoricData = () => {
 
       <div className="form">
         <form onSubmit={handleSubmit} className="form-control">
-          <div>
-            <label htmlFor="startDate">start date</label>
-            <input
-              type="date"
-              name="startDate"
-              id="startDate"
-              onChange={handleChange}
-              value={dates.startDate}
-            />
-          </div>
-          <div>
-            <label htmlFor="end-date">end date</label>
-            <input
-              type="date"
-              name="endDate"
-              id="endDate"
-              onChange={handleChange}
-              value={dates.endDate}
-            />
-          </div>
-
+          <FormRow
+            name="startDate"
+            type="date"
+            handleChange={handleChange}
+            value={dates.startDate}
+            labelText="start date"
+          />
+          <FormRow
+            name="endDate"
+            type="date"
+            handleChange={handleChange}
+            value={dates.endDate}
+            labelText="end date"
+          />
           <button type="submit">submit</button>
         </form>
       </div>

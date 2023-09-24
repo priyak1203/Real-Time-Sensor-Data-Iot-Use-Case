@@ -72,7 +72,6 @@ table {
   width: 100%;
   border: 2px solid var(--clr-primary);
   border-collapse: collapse;
-  min-height: 430px;
 }
 
 td,
@@ -212,7 +211,7 @@ tbody > tr:nth-child(even) {
   margin: 2rem;
   color: #900404;
   text-transform: capitalize;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   letter-spacing: 1px;
 }
 
@@ -256,6 +255,9 @@ tbody > tr:nth-child(even) {
   }
   .btn-container button {
     padding: 0.25rem 0.5rem;
+  }
+  .error-msg {
+    font-size: 1.7rem;
   }
 }
 
