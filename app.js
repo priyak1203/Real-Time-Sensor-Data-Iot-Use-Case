@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
   console.log(`Connected with id : ${socket.id}`);
 
   setInterval(async () => {
-    let dataSet = await SensorData.find().sort({ $natural: -1 }).limit(20);
+    let dataSet = await SensorData.find().sort({ date: -1 }).limit(20);
     io.emit('sendData', dataSet);
     console.log('data sent');
   }, 10000);
