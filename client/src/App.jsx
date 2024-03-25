@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HistoricData, HomePage } from './Pages';
+import { ErrorPage, HistoricData, HomePage } from './Pages';
 
 function App() {
   return (
@@ -7,6 +7,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/historic-data" element={<HistoricData />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
