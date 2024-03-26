@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 import MultiSeriesLineChart from '../components/Charts/MultiSeriesLineChart';
 
 const socket = io('http://localhost:5000/');
-// const socket = io();
+// const socket = io();  // works for the client on the same domain
 
 const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);

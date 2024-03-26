@@ -4,12 +4,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    // origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: '*',
   },
 });
 
@@ -41,6 +43,7 @@ io.on('connection', (socket) => {
 app.use(express.json());
 app.use(cors());
 // app.use(express.static('./public'));
+app.use(express.static(path.resolve(__dirname, './client/dist')));
 
 // routes
 app.get('/', (req, res) => {
