@@ -1,7 +1,12 @@
 :root {
+  /* green */
   --clr-primary: #4d7c0f;
   --clr-primary-1: #bed0a9;
   --clr-primary-2: #eff7e3;
+
+  --clr-primary: #b28900;
+  --clr-primary-1: #d2cbb8;
+  --clr-primary-2: #fcfcfa;
 
   --clr-grey-1: #f0f4f8;
   --clr-grey-2: #829ab1;
