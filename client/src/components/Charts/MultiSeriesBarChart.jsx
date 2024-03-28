@@ -5,7 +5,23 @@ import ReactFusioncharts from 'react-fusioncharts';
 // Resolves charts dependancy
 charts(FusionCharts);
 
-function MultiSeriesBarChart({ category, temperature, battery }) {
+function MultiSeriesBarChart({ category, temperature, battery, theme }) {
+  const mustard = {
+    primaryClr: '#b28900',
+    bgClr: '#f1f5f9',
+    canvasbgClr: '#f1f5f9',
+    legendbgClr: '#d6d1c4',
+  };
+
+  const green = {
+    primaryClr: '#4d7c0f',
+    bgClr: '#eaf5e1',
+    canvasbgClr: '#eaf5e1',
+    legendbgClr: '#eaf5e1',
+  };
+
+  const main = theme ? mustard : green;
+
   const dataSource = {
     chart: {
       caption: 'Recent Average Data',
@@ -14,9 +30,9 @@ function MultiSeriesBarChart({ category, temperature, battery }) {
       formatnumberscale: '1',
       plottooltext: 'The <b>$seriesName</b> is <b>$dataValue</b> on  $label',
       theme: 'fusion',
-      captionFontColor: '#b28900',
+      captionFontColor: main.primaryClr,
       captionFontSize: '14',
-      legendBgColor: '#d6d1c4',
+      legendBgColor: main.legendbgClr,
       legendBgAlpha: '30',
       legendPosition: 'center',
       legendItemFontSize: '12',
@@ -24,19 +40,19 @@ function MultiSeriesBarChart({ category, temperature, battery }) {
       legenditemfontbold: '1',
 
       yAxisNameFontSize: '12',
-      yAxisNameFontColor: '#b28900',
+      yAxisNameFontColor: main.primaryClr,
       xAxisNameFontSize: '12',
-      xAxisNameFontColor: '#b28900',
+      xAxisNameFontColor: main.primaryClr,
 
-      bgColor: '#f1f5f9',
+      bgColor: main.bgClr,
       bgAlpha: '50',
       showBorder: 1,
-      borderColor: '#b28900',
+      borderColor: main.primaryClr,
       borderAlpha: '70',
 
-      canvasbgColor: '#f1f5f9',
+      canvasbgColor: main.canvasbgClr,
       canvasbgAlpha: '70',
-      canvasbaseColor: '#f1f5f9',
+      canvasbaseColor: main.canvasbgClr,
       canvasbaseAlpha: '70',
       showCanvasBg: '0',
       showCanvasBase: '0',

@@ -5,7 +5,23 @@ import ReactFusioncharts from 'react-fusioncharts';
 // Resolves charts dependancy
 charts(FusionCharts);
 
-const MultiSeriesLineChart = ({ category, temperature, battery }) => {
+const MultiSeriesLineChart = ({ category, temperature, battery, theme }) => {
+  const mustard = {
+    primaryClr: '#b28900',
+    bgClr: '#f1f5f9',
+    canvasbgClr: '#faf9f6',
+    legendbgClr: '#d6d1c4',
+  };
+
+  const green = {
+    primaryClr: '#4d7c0f',
+    bgClr: '#f1f5f9',
+    canvasbgClr: '#eaf5e1',
+    legendbgClr: '#eaf5e1',
+  };
+
+  const main = theme ? { ...mustard } : { ...green };
+
   const dataSource = {
     chart: {
       caption: 'Real Time Sensor Data for Every 10s',
@@ -17,17 +33,17 @@ const MultiSeriesLineChart = ({ category, temperature, battery }) => {
       plottooltext: '<b>$dataValue</b> $seriesName on $label',
       theme: 'fusion',
       showCanvasBorder: '1',
-      captionFontColor: '#b28900',
+      captionFontColor: main.primaryClr,
       captionFontSize: '16',
-      canvasBorderColor: '#b28900',
+      canvasBorderColor: main.primaryClr,
       canvasBorderAlpha: '70',
-      canvasbgColor: '#faf9f6',
-      bgColor: '#f1f5f9',
-      borderColor: '#b28900',
+      canvasbgColor: main.canvasbgClr,
+      bgColor: main.bgClr,
+      borderColor: main.primaryClr,
       yAxisNameFontSize: '12',
-      yAxisNameFontColor: '#b28900',
+      yAxisNameFontColor: main.primaryClr,
       legendBorderThickness: '0',
-      legendBgColor: '#d6d1c4',
+      legendBgColor: main.legendbgClr,
       legendBgAlpha: '30',
       legendPosition: 'bottom-right',
       legendItemFontSize: '12',
