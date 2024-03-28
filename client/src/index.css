@@ -92,6 +92,7 @@ a {
   border-radius: 4px;
   margin-left: 1rem;
   cursor: pointer;
+  background-color: var(--clr-grey-1);
 }
 
 .toggle-btn svg {
