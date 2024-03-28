@@ -7,6 +7,8 @@ import MultiSeriesBarChart from '../components/Charts/MultiSeriesBarChart';
 import { paginate } from '../utils/paginate';
 import { calculateAvgData } from '../utils/chartData';
 import FormRow from '../components/FormRow';
+import { useGlobalContext } from '../context';
+import { StarIconFilled } from '../components/Icon';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
@@ -16,6 +18,8 @@ const HistoricData = () => {
   const [noOfPages, setNoOfPages] = useState(null);
 
   const [error, setError] = useState({ status: false, msg: '' });
+
+  const { mustardTheme, toggleTheme } = useGlobalContext();
 
   const handleError = (status = false, msg = '') => {
     setError({ status, msg });
@@ -61,9 +65,14 @@ const HistoricData = () => {
     <section className="section">
       <header>
         <h1 className="title">historic data</h1>
-        <Link to="/" className="btn">
-          back home
-        </Link>
+        <div className="toggle-btn-container">
+          <Link to="/" className="btn">
+            back home
+          </Link>
+          <button className="toggle-btn" onClick={toggleTheme}>
+            <StarIconFilled />
+          </button>
+        </div>
       </header>
 
       <div className="form">
@@ -98,6 +107,7 @@ const HistoricData = () => {
               category={categories}
               temperature={temperature}
               battery={batteryLevel}
+              theme={mustardTheme}
             />
           </div>
         </div>

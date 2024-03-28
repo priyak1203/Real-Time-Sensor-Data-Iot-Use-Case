@@ -71,6 +71,24 @@ a {
   font-size: 1rem;
 }
 
+/* =========== toggle button styles =========== */
+.toggle-btn-container {
+  display: flex;
+}
+
+.toggle-btn {
+  padding: 2px 4px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.toggle-btn svg {
+  color: var(--toggle-btn-clr);
+  width: 1.2rem;
+}
+
 /* =========== table styles =========== */
 
 table {

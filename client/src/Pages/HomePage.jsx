@@ -4,6 +4,8 @@ import io from 'socket.io-client';
 import Table from '../components/Table';
 import Loading from '../components/Loading';
 import MultiSeriesLineChart from '../components/Charts/MultiSeriesLineChart';
+import { useGlobalContext } from '../context';
+import { StarIconFilled } from '../components/Icon';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();  // works for the client on the same domain
@@ -11,6 +13,8 @@ const socket = io('http://localhost:5000/');
 const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { mustardTheme, toggleTheme } = useGlobalContext();
 
   useEffect(() => {
     socket.on('sendData', (data) => {
@@ -39,10 +43,16 @@ const HomePage = () => {
     <main className="section">
       <header>
         <h1 className="title">Real time sensor data </h1>
-        <Link to="/historic-data" className="btn">
-          get historic data
-        </Link>
+        <div className="toggle-btn-container">
+          <Link to="/historic-data" className="btn">
+            get historic data
+          </Link>
+          <button className="toggle-btn" onClick={toggleTheme}>
+            <StarIconFilled />
+          </button>
+        </div>
       </header>
+
       {isLoading ? (
         <Loading />
       ) : (
@@ -53,6 +63,7 @@ const HomePage = () => {
               category={categories}
               temperature={temperatureData}
               battery={batteryData}
+              theme={mustardTheme}
             />
           </div>
         </div>
