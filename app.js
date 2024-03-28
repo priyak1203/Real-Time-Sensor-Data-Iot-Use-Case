@@ -21,12 +21,15 @@ const connectDB = require('./db/connect');
 // Generating Data
 const dataGenerator = require('./utils/dataGenerator');
 
+// db models
+const SensorData = require('./models/SensorData');
+
 // data Controller
 const { getHistoricData, getAllData } = require('./controllers/dataController');
 
 // error handlers
+const notFoundMiddleware = require('./middlewares/notFound');
 const errorHandler = require('./middlewares/errorHandler');
-const SensorData = require('./models/SensorData');
 
 // Socket connections
 io.on('connection', (socket) => {
@@ -53,6 +56,12 @@ app.get('/', (req, res) => {
 app.get('/allData', getAllData);
 app.post('/historicData', getHistoricData);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
+});
+
+// setup error handlers
+app.use(notFoundMiddleware);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
