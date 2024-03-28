@@ -20,7 +20,7 @@ function MultiSeriesBarChart({ category, temperature, battery, theme }) {
     legendbgClr: '#eaf5e1',
   };
 
-  const main = theme ? mustard : green;
+  const main = theme ? { ...mustard } : { ...green };
 
   const dataSource = {
     chart: {
