@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
-import Table from '../components/Table';
-import Loading from '../components/Loading';
+import { Table, Loading } from '../components';
 import MultiSeriesLineChart from '../components/Charts/MultiSeriesLineChart';
 import { useGlobalContext } from '../context';
 import { StarIconFilled } from '../components/Icon';

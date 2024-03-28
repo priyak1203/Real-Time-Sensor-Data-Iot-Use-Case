@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Loading from '../components/Loading';
-import TableSection from '../components/TableSection';
+import { Loading, TableSection } from '../components';
 import MultiSeriesBarChart from '../components/Charts/MultiSeriesBarChart';
+import { StarIconFilled } from '../components/Icon';
 import { paginate } from '../utils/paginate';
 import { calculateAvgData } from '../utils/chartData';
 import FormRow from '../components/FormRow';
 import { useGlobalContext } from '../context';
-import { StarIconFilled } from '../components/Icon';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
