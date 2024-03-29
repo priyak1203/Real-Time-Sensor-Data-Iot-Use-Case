@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
   Loading,
   TableSection,
@@ -8,46 +7,22 @@ import {
   MultiSeriesBarChart,
   StarIconFilled,
 } from '../components';
-import { paginate } from '../utils/paginate';
 import { calculateAvgData } from '../utils/chartData';
 import { useGlobalContext } from '../context';
+import useFetchHistoricData from '../utils/dataFetch';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
-  const [sensorData, setSensorData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [pageData, setPageData] = useState([]);
-  const [noOfPages, setNoOfPages] = useState(null);
-
-  const [error, setError] = useState({ status: false, msg: '' });
-
   const { mustardTheme, toggleTheme } = useGlobalContext();
 
-  const handleError = (status = false, msg = '') => {
-    setError({ status, msg });
-  };
-
-  const fetchHistoricData = async () => {
-    setIsLoading(true);
-    handleError();
-    const url = 'http://localhost:5000/historicData';
-
-    const historicDates = { start: dates.startDate, end: dates.endDate };
-    try {
-      const {
-        data: { data: sensorData },
-      } = await axios.post(url, historicDates);
-
-      setSensorData(sensorData); // original data
-
-      const { data, pages } = paginate(sensorData);
-      setPageData(data); // paged data
-      setNoOfPages(pages);
-    } catch (error) {
-      handleError(true, error.response.data.msg);
-    }
-    setIsLoading(false);
-  };
+  const {
+    isLoading,
+    sensorData,
+    pageData,
+    noOfPages,
+    fetchHistoricData,
+    error,
+  } = useFetchHistoricData();
 
   const handleChange = (e) => {
     setDates({ ...dates, [e.target.name]: e.target.value });
@@ -56,7 +31,7 @@ const HistoricData = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // setDates({ startDate: '', endDate: '' });
-    fetchHistoricData();
+    fetchHistoricData(dates);
   };
 
   // calculate chart data
