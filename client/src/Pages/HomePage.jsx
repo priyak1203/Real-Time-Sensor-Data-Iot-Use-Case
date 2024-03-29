@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
-import { Table, Loading } from '../components';
-import MultiSeriesLineChart from '../components/Charts/MultiSeriesLineChart';
+import {
+  Table,
+  Loading,
+  MultiSeriesLineChart,
+  StarIconFilled,
+} from '../components';
 import { useGlobalContext } from '../context';
-import { StarIconFilled } from '../components/Icon';
 
 const socket = io('http://localhost:5000/');
 // const socket = io();  // works for the client on the same domain
