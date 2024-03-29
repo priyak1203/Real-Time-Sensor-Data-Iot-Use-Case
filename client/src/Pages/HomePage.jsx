@@ -27,18 +27,18 @@ const HomePage = () => {
     });
   }, [socket]);
 
-  // chart data
-  const categories = sensorData.map(({ msTime }) => {
+  // calculating chart data
+  const chartData = {
+    category: [],
+    temperature: [],
+    batteryLevel: [],
+  };
+
+  sensorData.map(({ msTime, temperature, batteryLevel }) => {
     const label = new Date(msTime).toLocaleString('en-GB');
-    return { label };
-  });
-
-  const temperatureData = sensorData.map(({ temperature }) => {
-    return { value: temperature };
-  });
-
-  const batteryData = sensorData.map(({ batteryLevel }) => {
-    return { value: batteryLevel };
+    chartData.category.push({ label });
+    chartData.temperature.push({ value: temperature });
+    chartData.batteryLevel.push({ value: batteryLevel });
   });
 
   return (
@@ -62,9 +62,9 @@ const HomePage = () => {
           <Table data={sensorData} />
           <div className="chart">
             <MultiSeriesLineChart
-              category={categories}
-              temperature={temperatureData}
-              battery={batteryData}
+              category={chartData.category}
+              temperature={chartData.temperature}
+              battery={chartData.batteryLevel}
               theme={mustardTheme}
             />
           </div>
