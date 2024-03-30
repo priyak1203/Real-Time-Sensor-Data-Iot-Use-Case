@@ -1,5 +1,6 @@
 export const calculateAvgData = (sensorData) => {
-  const chartData = sensorData.reduce((data, item) => {
+  // calculate total temperature and battery for each day
+  const totalData = sensorData.reduce((data, item) => {
     const { temperature, batteryLevel, timeStamp } = item;
 
     if (!data[timeStamp]) {
@@ -21,17 +22,17 @@ export const calculateAvgData = (sensorData) => {
 
   // calculate average temperature and battery for each day
   let avgData = [];
-  for (const date in chartData) {
+  for (const date in totalData) {
     const avgTemperature = Number(
-      (chartData[date].ttlTemperature / chartData[date].count).toFixed(3)
+      (totalData[date].ttlTemperature / totalData[date].count).toFixed(3)
     );
 
     const avgBattery = Number(
-      (chartData[date].ttlBattery / chartData[date].count).toFixed(3)
+      (totalData[date].ttlBattery / totalData[date].count).toFixed(3)
     );
 
     const newValue = {
-      ...chartData[date],
+      ...totalData[date],
       date,
       avgTemperature,
       avgBattery,
@@ -43,17 +44,19 @@ export const calculateAvgData = (sensorData) => {
   // limit to latest 5
   avgData.reverse().splice(5);
 
-  const categories = avgData.map(({ date }) => {
-    return { label: date };
+  // modify data for the chart
+  const chartData = {
+    category: [],
+    temperature: [],
+    batteryLevel: [],
+  };
+
+  avgData.map((item) => {
+    const { date, avgBattery, avgTemperature } = item;
+    chartData.category.push({ label: date });
+    chartData.temperature.push({ value: avgTemperature });
+    chartData.batteryLevel.push({ value: avgBattery });
   });
 
-  const temperature = avgData.map(({ avgTemperature }) => {
-    return { value: avgTemperature };
-  });
-
-  const batteryLevel = avgData.map(({ avgBattery }) => {
-    return { value: avgBattery };
-  });
-
-  return { categories, temperature, batteryLevel };
+  return chartData;
 };

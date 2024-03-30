@@ -35,8 +35,7 @@ const HistoricData = () => {
   };
 
   // calculate chart data
-  const { categories, temperature, batteryLevel } =
-    calculateAvgData(sensorData);
+  const chartData = calculateAvgData(sensorData);
 
   return (
     <section className="section">
@@ -81,9 +80,9 @@ const HistoricData = () => {
           <TableSection pageData={pageData} noOfPages={noOfPages} />
           <div className="chart chart-section">
             <MultiSeriesBarChart
-              category={categories}
-              temperature={temperature}
-              battery={batteryLevel}
+              category={chartData.category}
+              temperature={chartData.temperature}
+              battery={chartData.batteryLevel}
               theme={mustardTheme}
             />
           </div>
