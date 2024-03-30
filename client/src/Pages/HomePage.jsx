@@ -5,7 +5,7 @@ import {
   Table,
   Loading,
   MultiSeriesLineChart,
-  StarIconFilled,
+  ThemeButton,
 } from '../components';
 import { useGlobalContext } from '../context';
 
@@ -16,7 +16,7 @@ const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { mustardTheme, toggleTheme } = useGlobalContext();
+  const { mustardTheme } = useGlobalContext();
 
   useEffect(() => {
     socket.on('sendData', (data) => {
@@ -49,9 +49,7 @@ const HomePage = () => {
           <Link to="/historic-data" className="btn">
             get historic data
           </Link>
-          <button className="toggle-btn" onClick={toggleTheme}>
-            <StarIconFilled />
-          </button>
+          <ThemeButton />
         </div>
       </header>
 

@@ -5,7 +5,7 @@ import {
   TableSection,
   FormRow,
   MultiSeriesBarChart,
-  StarIconFilled,
+  ThemeButton,
 } from '../components';
 import { calculateAvgData } from '../utils/chartData';
 import { useGlobalContext } from '../context';
@@ -13,7 +13,7 @@ import useFetchHistoricData from '../utils/dataFetch';
 
 const HistoricData = () => {
   const [dates, setDates] = useState({ startDate: '', endDate: '' });
-  const { mustardTheme, toggleTheme } = useGlobalContext();
+  const { mustardTheme } = useGlobalContext();
 
   const {
     isLoading,
@@ -45,9 +45,7 @@ const HistoricData = () => {
           <Link to="/" className="btn">
             back home
           </Link>
-          <button className="toggle-btn" onClick={toggleTheme}>
-            <StarIconFilled />
-          </button>
+          <ThemeButton />
         </div>
       </header>
 
