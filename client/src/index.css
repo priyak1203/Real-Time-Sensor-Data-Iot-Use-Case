@@ -93,11 +93,33 @@ a {
   margin-left: 1rem;
   cursor: pointer;
   background-color: var(--clr-grey-1);
+  position: relative;
 }
 
 .toggle-btn svg {
   color: var(--toggle-btn-clr);
   width: 1.2rem;
+}
+
+.tooltip-text {
+  display: none;
+  background-color: var(--clr-primary);
+  color: var(--clr-grey-1);
+  border-radius: 2px;
+  text-transform: capitalize;
+  font-size: 12px;
+  width: 100px;
+  padding: 2px;
+
+  position: absolute;
+  z-index: 1;
+
+  top: 32px;
+  left: -70%;
+}
+
+.toggle-btn:hover .tooltip-text {
+  display: inline-block;
 }
 
 /* =========== table styles =========== */
