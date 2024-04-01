@@ -17,7 +17,7 @@ const useFetchHistoricData = () => {
   const fetchHistoricData = async (dates) => {
     setIsLoading(true);
     handleError();
-    const url = 'http://localhost:5000/historicData';
+    const url = '/api/historicData';
 
     const historicDates = { start: dates.startDate, end: dates.endDate };
     try {
