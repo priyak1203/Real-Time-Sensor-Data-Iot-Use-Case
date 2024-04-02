@@ -38,7 +38,6 @@ io.on('connection', (socket) => {
   setInterval(async () => {
     let dataSet = await SensorData.find().sort({ date: -1 }).limit(20);
     io.emit('sendData', dataSet);
-    console.log('data sent');
   }, 10000);
 });
 
@@ -71,7 +70,7 @@ const start = async () => {
     server.listen(PORT, () =>
       console.log(`Server is listening on port: ${PORT}`)
     );
-    // dataGenerator();
+    dataGenerator();
   } catch (error) {
     console.log(error);
   }

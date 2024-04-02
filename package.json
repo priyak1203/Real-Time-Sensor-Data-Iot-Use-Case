@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-project": "npm i && cd client && npm i",
+    "dev-server": "nodemon app.js",
+    "server": "nodemon app.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" ",
+    "setup-production-app": "npm i && cd client && npm i && npm run build"
   },
   "author": "Kumari Priyadarshini",
   "license": "ISC",
@@ -20,6 +25,7 @@
     "socket.io": "^4.6.1"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "nodemon": "^2.0.22"
   }
 }
