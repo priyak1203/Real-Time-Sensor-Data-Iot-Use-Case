@@ -9,8 +9,7 @@ import {
 } from '../components';
 import { useGlobalContext } from '../context';
 
-const socket = io('http://localhost:5000/');
-// const socket = io();  // works for the client on the same domain
+const socket = io(); // works for the client on the same domain
 
 const HomePage = () => {
   const [sensorData, setSensorData] = useState([]);
