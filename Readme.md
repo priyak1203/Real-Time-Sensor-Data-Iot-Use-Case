@@ -7,7 +7,7 @@ The app uses web sockets to display data in real time.
 
 #### Links
 
-[Live App](https://real-time-sensor-data.onrender.com/)
+[Live App](https://real-time-sensor-data.onrender.com/) {:target="\_blank"}
 
 #### Features
 
