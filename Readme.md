@@ -1,7 +1,13 @@
 ## Real Time Sensor Data
 
-App for displaying the data from sensors. The data is fetched every 2mins and displayed in both table and chart formats.
+#### Overview
+
+Application for displaying the data from sensors for IoT devices. The data is fetched every 2mins and displayed in both table and chart formats.
 The app uses web sockets to display data in real time.
+
+#### Links
+
+[Live App](https://real-time-sensor-data.onrender.com/)
 
 #### Features
 
