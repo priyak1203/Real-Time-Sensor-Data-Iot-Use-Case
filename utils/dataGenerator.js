@@ -16,12 +16,13 @@ function getData() {
   };
 }
 
-// Generate and save data in DB every 10s
+// Generate and save data in DB every 2 minutes
 function dataGenerator() {
+  const oneMin = 1000 * 60; // 60s
   setInterval(async () => {
     let data = getData();
     await SensorData.insertMany(data);
-  }, 10000);
+  }, oneMin * 2);
 }
 
 module.exports = dataGenerator;
