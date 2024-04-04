@@ -2,8 +2,8 @@
 
 #### Overview
 
-Application for displaying the data from sensors for IoT devices. The data is fetched every 2mins and displayed in both table and chart formats.
-The app uses web sockets to display data in real time.
+Application for displaying data from sensors for IoT devices. Data is fetched every 2mins and displayed in both table and chart formats.
+The app uses web sockets to display data in real time. It is hosted on Render.
 
 #### Links
 
